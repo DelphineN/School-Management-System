@@ -1,0 +1,58 @@
+﻿@model IEnumerable<CourseReg3.Models.Instructors>
+
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Instructors</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Instructors" asp-action="Create" class="btn btn-primary">Create a new Instructor</a>
+        </div>
+    </div>
+    <br />
+
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        FirstName
+                    </th>
+                    <th>
+                        LastName
+                    </th>
+                    <th>
+                        EmailAddress
+                    </th>
+                    <th>
+                        CourseName
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var instructors in Model)
+                {
+                <tr>
+                    <td width="30%">@instructors.FirstName</td>
+                    <td width="30%">@instructors.LastName</td>
+                    <td width="30%">@instructors.EmailAddress</td>
+                    <td width="30%">@instructors.CourseName</td>
+                    <td width="25%">
+                        <div class="w-100 btn-group" role="group">
+                            <a asp-controller="Instructors" asp-action="Update" asp-route-Id="@instructors.InstructorId" class="btn btn-primary mx-1">Edit</a>
+                            <a asp-controller="Instructors" asp-action="Delete" asp-route-Id="@instructors.InstructorId" class="btn btn-danger mx-1">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No Instructor registered yet</p>
+    }
+
+</div>
